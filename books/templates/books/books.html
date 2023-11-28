@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'books/css/books.css' %}">
+{% endblock %}
+
+{% block content %}
+<h3 class="text-center text-light">{{selected.name}}</h3>
+<div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+    {% for book in books %}
+    <a href="{% url 'book' book.slug %}">
+        <div class="col">
+            <div class="card border-0 bg-dark text-white">
+                <img src="{{book.image.url}}" class="card-img-top" alt="{{book.name}}">
+                <div class="card-body">
+                    <h6 class="card-title text-center">{{book.name}}</h6>
+                </div>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
+
+{% block aside %}
+{% include "books/partials/_aside.html" %}
+{% endblock %}

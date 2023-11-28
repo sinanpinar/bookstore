@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'books/css/books.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="row text-light">
+    <div class="col-md-4">
+        <img src="{{book.image.url}}" class="img-fluid" alt="{{book.name}}">
+    </div>
+    <div class="col-md-8">
+        <h1 class="card-title">{{book.name}}</h1>
+        <hr><br>
+        <h5 class="card-text">Yazar : <a href="{% url 'writer' book.writer.slug %}">{{book.writer}}</a></h5>
+        <br>
+        <h5 class="card-text">Yayın Evi : <a href="{% url 'publisher' book.publisher.slug %}">{{book.publisher}}</a>
+        </h5>
+        <br>
+        <h5 class="card-text">Oluşturma Tarihi : {{book.createDate}}</h5>
+        <br>
+        {% for i in book.categories.all %}
+        <a href="{% url 'category' i.slug %}" class="btn btn-outline-light  btn-sm">{{ i.name }}</a>
+        {% endfor %}
+
+
+    </div>
+    <div class="col-md-12">
+        <br>
+        <h5 class="card-text">Açıklama : {{book.description}}</h5>
+    </div>
+    <div class="col-md-12">
+        <br><br>
+        <a class="btn btn-outline-light" target="_blank" href="{{book.pdf.url}}">{{book.name}}</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block aside %}
+{% include "books/partials/_aside.html" %}
+{% endblock %}

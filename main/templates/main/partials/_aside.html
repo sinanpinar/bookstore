@@ -1,0 +1,13 @@
+{% load static %}
+
+<div class="card bg-light text-white bg-opacity-25" style="width: 18rem;">
+    <div class="card-header bg-primary">
+        Categories
+    </div>
+    <div class="card-body ">
+        {% for category in categories %}
+
+        <a href="{% url 'category' category.slug %} " class="btn btn-outline-light btn-sm mb-1">{{category.name}}</a>
+        {% endfor %}
+    </div>
+</div>

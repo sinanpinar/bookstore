@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="tr-TR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  {% block head %}
+  {% endblock %}
+
+  <title>BookStore</title>
+</head>
+
+<body class="bg-dark">
+  <header>
+    {% include 'partials/_header.html' %}
+  </header>
+
+  <main>
+    <div class="container link-underline-opacity-0">
+      <div class="row mt-5">
+        <div class="col-md-9">
+          {% block content %}
+          {% endblock %}
+        </div>
+        <div class="col-md-3">
+          {% block aside %}
+          {% endblock %}
+        </div>
+      </div>
+      
+    </div>
+  </main>
+
+  <footer class="bg-light p-2 text-white bg-opacity-25 mt-5">
+    {% include 'partials/_footer.html' %}
+  </footer>
+
+
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>
