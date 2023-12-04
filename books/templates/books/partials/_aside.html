@@ -1,12 +1,43 @@
 {% load static %}
 
-<div class="card bg-light text-white bg-opacity-25" style="width: 18rem;">
+<div class="card bg-light text-white bg-opacity-10 border-primary" style="width: 18rem;">
+    <div class="card-header bg-primary">
+        Search
+    </div>
     <div class="card-body">
-        <h5>Categories</h5>
-        <hr>
-        {% for category in categories %}
-
-        <a href="{% url 'category' category.slug %}" class="btn btn-outline-light btn-sm mb-1">{{category.name}}</a>
-        {% endfor %}
+        <form action="{% url 'books' %}" method="get">
+            <div class="mb-3">
+                <label class="form-label" for="q">Name</label>
+                <input class="form-control" type="search" id="q" name="q">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="writer">Writers</label>
+                <select class="form-select" id="writer" name="writer">
+                    <option value="">Seçilmedi</option>
+                    {% for writer in writers %}
+                    <option value="{{writer.slug}}">{{writer.name}} {{writer.surname}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="publisher">Publishers</label>
+                <select class="form-select" id="publisher" name="publisher">
+                    <option value="">Seçilmedi</option>
+                    {% for publisher in publishers %}
+                    <option value="{{publisher.slug}}">{{publisher.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="category">Categories</label>
+                <select class="form-select" id="category" name="category">
+                    <option value="">Seçilmedi</option>
+                    {% for category in categories %}
+                    <option value="{{category.slug}}">{{category.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class="btn btn-outline-light" type="submit">Search</button>
+        </form>
     </div>
 </div>

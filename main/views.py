@@ -5,7 +5,8 @@ from books.models import Book,Category
 
 def index(request):
     context={
-        "books":zip(range(5),Book.objects.order_by("createDate")[:5:-1]),
+        "carousel":zip(range(5),list(Book.objects.all())[:-5:-1]),
+        "books":Book.objects.all()[::-1],
         "categories":Category.objects.all()
     }
     return render(request,"main/index.html",context)

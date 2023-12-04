@@ -1,14 +1,35 @@
 {% extends 'base.html' %}
 {% load static %}
 
-<!-- {% block head %}
-<link rel="stylesheet" href="{% static 'main/css/main.css'%}">
-{% endblock %} -->
+{% block head %}
+<link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+{% endblock %}
 
 {% block content %}
-    {% include 'main/partials/_carousel.html' %}
+{% include 'main/partials/_carousel.html' %}
+<div class="card bg-light bg-opacity-10 ">
+    <div class="card-header bg-primary text-light">
+        Son Eklenenler
+    </div>
+    <div class="card-body">
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+            {% for book in books %}
+            <a href="{% url 'book' book.slug %}">
+                <div class="col">
+                    <div class="card border-0 bg-transparent text-light">
+                        <img src="{{book.image.url}}" class="card-img-top" alt="{{book.name}}">
+                        <div class="card-body">
+                            <h6 class="card-title text-center">{{book.name}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block aside %}
-    {% include 'main/partials/_aside.html' %}
+{% include 'main/partials/_aside.html' %}
 {% endblock %}
